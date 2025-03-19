@@ -27,6 +27,10 @@ public class Expense {
     }
 
     public Expense() {
+        this.title="";
+        this.reason="";
+        this.date=LocalDate.now();
+        this.amount=0.0;
     }
 
     public Long getId() {
