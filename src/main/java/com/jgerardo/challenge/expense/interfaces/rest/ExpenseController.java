@@ -11,6 +11,7 @@ import com.jgerardo.challenge.expense.interfaces.rest.resources.UpdateExpenseRes
 import com.jgerardo.challenge.expense.interfaces.rest.transform.CreateExpenseCommandFromResourceAssembler;
 import com.jgerardo.challenge.expense.interfaces.rest.transform.ExpenseResourceFromEntityAssembler;
 import com.jgerardo.challenge.expense.interfaces.rest.transform.UpdateExpenseCommandFromResourceAssembler;
+import com.jgerardo.challenge.shared.interfaces.rest.resources.MessageResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -76,7 +77,6 @@ public class ExpenseController {
     public ResponseEntity<?> deleteExpense(@PathVariable Long id){
         var command = new DeleteExpenseCommand(id);
         expenseCommandService.handle(command);
-        return new ResponseEntity<>("Expense was deleted successfully.", HttpStatus.OK);
-
+        return ResponseEntity.status(HttpStatus.OK).body(new MessageResource("Expense was deleted successfully"));
     }
 }
